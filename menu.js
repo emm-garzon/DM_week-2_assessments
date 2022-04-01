@@ -31,6 +31,16 @@
 
 //CODE HERE
 
+const pizza = {
+  name: "Meat Lovers",
+  price: 10,
+  category: "entree",
+  popularity: 8,
+  rating: 9,
+  tag: ["adult", "serves 5", "specialty pie"], // VS CODE automatically enters this last comma
+};
+console.log(pizza);
+
 //////////////////PROBLEM 2////////////////////
 /* 
     Let's print a few values from our pizza object.
@@ -41,6 +51,8 @@
 
 //CODE HERE
 
+console.log(`This pizza's rating: ${pizza.popularity}`);
+
 /*
     Second, log the second tag in your pizza's
     tags array.
@@ -49,6 +61,8 @@
 */
 
 //CODE HERE
+
+console.log(pizza.tag[1]); // serves 5
 
 /*
     Third, destructure the price off of the
@@ -59,6 +73,9 @@
 
 //CODE HERE
 
+const { price } = pizza;
+console.log(price);
+
 /*
     Fourth, and last, destructure the category
     property.
@@ -67,6 +84,9 @@
 */
 
 //CODE HERE
+
+const { category } = pizza;
+console.log(category);
 
 //////////////////PROBLEM 3////////////////////
 /* 
@@ -82,6 +102,49 @@
 
 //CODE HERE
 
+const foodArr = [
+  {
+    name: "pizza",
+    price: 10,
+    category: "entree",
+    popularity: 8,
+    rating: 9,
+    tag: ["adult", "serves 5", "specialty pie"],
+  },
+  {
+    name: "pasta",
+    price: 12,
+    category: "entree",
+    popularity: 7,
+    rating: 10,
+    tag: ["vegetarian", "kid-friendly", "zesty"],
+  },
+  {
+    name: "garlic knots",
+    price: 7,
+    category: "appetizer",
+    popularity: 10,
+    rating: 10,
+    tag: ["bite-sized", "serves 2", "staff favorite"],
+  },
+  {
+    name: "salad",
+    price: 15,
+    category: "entree",
+    popularity: 6,
+    rating: 5,
+    tag: ["green", "leafy", "weight-loss"],
+  },
+  {
+    name: "fried zucchini",
+    price: 5,
+    category: "appetizer",
+    popularity: 9,
+    rating: 8,
+    tag: ["fried", "bite-sized", "serves 4"],
+  },
+];
+
 //////////////////PROBLEM 4////////////////////
 /* 
     Let's filter the food objects according
@@ -96,7 +159,16 @@
 
 //CODE HERE
 
-// const filteredFood = foodArr.filter(/* CALLBACK HERE */)
+const filteredFood = foodArr.filter((item) => {
+  if (
+    item.tag[0] === "bite-sized" ||
+    item.tag[1] === "bite-sized" ||
+    item.tag[2] === "bite-sized"
+  ) {
+    return item;
+  }
+});
+console.log(filteredFood); // returns 2 objects
 
 //////////////////PROBLEM 5////////////////////
 /* 
@@ -139,6 +211,17 @@
 
 //CODE HERE
 
+const filterByProperty = (rating, number, type) => {
+  let filteredFood = foodArr.filter((item) => {
+    if (type === "above") {
+      return item[rating] > number;
+    } else if (type === "below") {
+      return item[rating] <= number;
+    }
+  });
+  return filteredFood;
+};
+
 /*
     Invoke the `filterByProperty` function passing
     in a value for each paramter.
@@ -147,3 +230,5 @@
 */
 
 //CODE HERE
+
+console.log(filterByProperty("rating", 5, "above"));
